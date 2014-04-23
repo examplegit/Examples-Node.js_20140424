@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title><% title %></title>
+    </head>
+    <body>
+        <h1>Hello EJS</h1>
+        
+        <% if (title == 'Hi EJS') { %>
+            <h1>YES</h1>
+        <% } else { %>
+            <h1>NO</h1>
+        <% } %>
+
+        <ul>
+        <% for(var i=0; i<list.length; i++) {%>
+           <li><%= list[i] %></li>
+        <% } %>
+        </ul>
+        
+    </body>
+    
+</html>

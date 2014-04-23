@@ -1,0 +1,21 @@
+html
+    head
+        title Hello Jade
+    body
+        h1 Hello Jade
+        
+a(href='http://www.mandice.com/') Hello
+
+div#myid.my_div
+
+div #{msg1}
+
+- if (msg1 == 'Hello Template')
+    div Hello Template
+- else
+    div Nothing
+
+
+- for (var i = 0; i <= 10; i++)
+    div #{i}
+

@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		title= signin
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/') Home
+
+		div(style='float:right')
+			if (username && authenticated)
+				a(href='/signout', style='margin:10px;') Sign Out
+				a(href='/add_article', style='margin:10px;') Add Article
+				a(href='/profile', style='margin:10px;') Profile
+				span #{username}
+			else
+				a(href='/signin', style='margin:10px;') Log In
+				a(href='/register', style='margin:10px;') Register
+				a(href='/forget', style='margin:10px;') Forgot password
+	
+	div(style='padding:50px;')
+		h1= title
+
+	for article in blogs
+		div
+			div(style='float:left;margin-top:10px;')= article.Username
+			div(style='float:right;margin-top:10px;')= article.CreateDate
+			br
+			div(style='clear:both')= article.Article
+				a(href='/message/'+article.id, style='float:right;margin-top:105px;margin-right:20px;') Leave a message
+			hr(style='margin-top:110px;')
