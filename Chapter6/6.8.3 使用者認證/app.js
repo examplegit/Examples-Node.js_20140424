@@ -1,22 +1,22 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var cookieSession = require('cookie-session')
+
+// 建立一個 Express 伺服器
 var app = express();
 
-app.configure(function() {
-    // 啟用cookie解析器
-    app.use(express.cookieParser());
+// 啟用cookieSession
+app.use(cookieSession({
+    key: 'node',
+    secret: 'HelloExpressSESSION'
+}))
 
-    // 啟用cookieSession
-    app.use(express.cookieSession({
-        key: 'node',
-        secret: "HelloExpressSESSION"
-    }));
-
-    // 啟用 body 解析器
-    app.use(express.bodyParser());
-    
-    // 啟用路由機制
-    app.use(app.router);
-});
+// 設定bodyParser支援application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ 
+	
+	// 在bodyParser處理Query String
+	extended: true 
+}));
 
 app.get('/login_page', function(req, res) {
     // 檢查是否已經登入
@@ -29,15 +29,6 @@ app.get('/login_page', function(req, res) {
 
     // 因為尚未登入，顯示登入表單
     res.send('<form action=\"/login\" method=\"POST\"><input type=\"text\" name=\"username\"><br/><input type=\"password\" name=\"password\"><br/><input type=\"submit\" value=\"登入\"></form>');
-    /*
-    res.send('<form action=\"/login\" method=\"POST\">');
-    res.send('<input type=\"text\" name=\"username\">');
-    res.send('<br/>');
-    res.send('<input type=\"password\" name=\"password\">');
-    res.send('<br/>');
-    res.send('<input type=\"submit\" value=\"登入\">');
-    res.send('</form>');
-    */
     res.end();
 });
 

@@ -1,21 +1,25 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+
+// 建立一個 Express 伺服器
 var app = express();
 
-app.configure(function() {
-    // 啟用 body 解析器
-    app.use(express.bodyParser());
-    
-    app.use(function(req, res, next) {
+app.use(function (req, res, next) {
+    res.send('Insert text before content.');
+    next();
+})
 
-        // 輸出字串到瀏覽器
-        res.send('Insert text before content.');
+// 設定bodyParser支援application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ 
+	
+	// 在bodyParser處理Query String
+	extended: true 
+}));
 
-        // 交給下一個 Middleware 繼續處理
-        next();
-    });
-
-    // 啟用路由機制
-    app.use(app.router);
+app.get('/mydir/hello', function(req, res) {
+    console.log(req.query.name);
+    console.log(req.query.country);
+    res.end();
 });
 
 app.listen(12345);

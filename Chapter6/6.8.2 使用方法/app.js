@@ -1,19 +1,23 @@
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+
+// 建立一個 Express 伺服器
 var app = express();
 
-app.configure(function() {
-    // 啟用cookie解析器
-    app.use(express.cookieParser());
+// 啟用cookie解析器
+app.use(cookieParser());
 
-    // 啟用Session
-    app.use(express.session({ secret: 'HelloExpressSESSION' }));
+// 啟用Session
+app.use(session({ secret: 'HelloExpressSESSION' }))
 
-    // 啟用 body 解析器
-    app.use(express.bodyParser());
-    
-    // 啟用路由機制
-    app.use(app.router);
-});
+// 設定bodyParser支援application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ 
+	
+	// 在bodyParser處理Query String
+	extended: true 
+}));
 
 app.get('/mysession', function(req, res) {
 
@@ -27,7 +31,7 @@ app.get('/mysession', function(req, res) {
     }
     console.log(req.session.count);
     // 將目前count欄位內的值回傳給瀏覽器
-    res.send(req.session.count);
+	res.sendStatus(req.session.count);
     res.end();
 });
 

@@ -1,13 +1,10 @@
 var express = require('express');
+
+// 建立一個 Express 伺服器
 var app = express();
 
-app.configure(function() {
-    app.set('views', __dirname + '/views'); 
-    app.set('view engine', 'jade');
-
-    // 啟用路由機制
-    app.use(app.router);
-});
+app.set('views', __dirname + '/views'); 
+app.set('view engine', 'jade');
 
 // GET方法的路由，用來處理「/myroute」路徑
 app.get('/myroute', function(req, res) {

@@ -1,13 +1,15 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+
+// 建立一個 Express 伺服器
 var app = express();
 
-app.configure(function() {
-    // 啟用 body 解析器
-    app.use(express.bodyParser());
-
-    // 啟用路由機制
-    app.use(app.router);
-});
+// 設定bodyParser支援application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ 
+	
+	// 在bodyParser處理Query String
+	extended: true 
+}));
 
 app.get('/mydir/hello/:name', function(req, res) {
     console.log(req.params.name);
@@ -16,7 +18,6 @@ app.get('/mydir/hello/:name', function(req, res) {
 app.post('/mydir/hello/:name', function(req, res) {
     console.log(req.params.name);
 });
-
 
 app.listen(12345);
 
