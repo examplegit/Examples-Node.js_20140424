@@ -1,21 +1,21 @@
 var express = require('express');
 
-// å»ºç?ä¸?? Express ä¼ºæ???
+// å»ºç«‹ä¸€å€‹ Express ä¼ºæœå™¨
 var app = express();
 
-// è¨­å??œæ?æª”æ???œ¨?®é?
+// è¨­å®šéœæ…‹æª”æ¡ˆæ‰€åœ¨ç›®éŒ„
 app.use(express.static(__dirname + '/public'));
 
-// GET?¹æ??„è·¯?±ï??¨ä??•ç???myroute?è·¯å¾?
+// GETæ–¹æ³•çš„è·¯ç”±ï¼Œç”¨ä¾†è™•ç†ã€Œ/myrouteã€è·¯å¾‘
 app.get('/myroute', function(req, res) {
-    // ?³é?å­—ä¸²?ç?è¦½å™¨
+    // å‚³é€å­—ä¸²å›ç€è¦½å™¨
     res.send('This is GET method');
     res.end();
 });
 
-// POST?¹æ??„è·¯?±ï??¨ä??•ç????è·¯å¾?
+// POSTæ–¹æ³•çš„è·¯ç”±ï¼Œç”¨ä¾†è™•ç†ã€Œ/ã€è·¯å¾‘
 app.post('/myroute', function(req, res) {
-    // ?³é?å­—ä¸²?ç?è¦½å™¨
+    // å‚³é€å­—ä¸²å›ç€è¦½å™¨
     res.send('This is POST method');
     res.end();
 });
