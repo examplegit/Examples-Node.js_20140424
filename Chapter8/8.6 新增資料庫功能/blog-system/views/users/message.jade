@@ -1,0 +1,62 @@
+doctype html
+html
+	head
+		title= 'Leave a Message'
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/') Home
+
+		div(style='float:right')
+			if (username && authenticated)
+				span #{username}
+				a(href='/users/profile', style='margin:10px;') Profile
+				a(href='/users/add_article', style='margin:10px;') Add Article
+				a(href='/users/signout', style='margin:10px;') Sign Out
+			else
+				a(href='/users/signin', style='margin:10px;') Log In
+				a(href='/users/register', style='margin:10px;') Register
+	
+	div(style='padding:50px;')
+		h1= title
+
+	for article in blogs
+		div
+			div(style='float:left;margin-top:10px;')= article.Username
+			div(style='float:right;margin-top:10px;')= article.CreateDate
+			br
+			div(style='clear:both')= article.Article
+			hr(style='margin-top:30px;')
+			br
+			br
+
+	div(style='width:40%;margin-left:30%; ')
+		for comment in comments
+			div(style='right:42%; margin-top:20px;')
+				div(style='float:left;margin-top:10px;')= comment.Visitor
+				div(style='float:right;margin-top:10px;')= comment.CreateDate
+				br
+				div(style='clear:both')= comment.Comment
+				hr(style='margin-top:30px;')
+				br
+				br
+			
+	div(style='margin-left:30%; ')
+		form(name="comment", action="/apis/comment/" + messageID, method="post")
+			h1 Leave a message
+			div
+				p
+					span Name: 
+					input(type="text", name="Visitor")
+				p
+					textarea(cols="50", rows="10", style='resize : none;', name="Comment")
+				div
+					span(style='padding-right:377px')
+					input(type="submit", name="submit", value="Reply ")
+					hr(style='width:50%;margin-top:30px;margin-left:0%;')
+					br
+					br
+
+
+					
+
+

@@ -1,0 +1,29 @@
+doctype html
+html
+	head
+		title= Login
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/') Home
+	
+		div(style='float:right')
+				a(href='/users/register', style='margin:10px;') Register
+				a(href='/users/forget', style='margin:10px;') Forgot password	
+			
+		div(style='padding:50px;')
+			form(name="login", action="/apis/login", method="post")
+				h1 Login
+				div
+					p
+						label(style='padding-right:50px') Username or e-mail
+						input(type="text", name="user", placeholder='username@example.com')
+					p
+						label(style='padding-right:110px')  password
+						input(type="password", name="passwd")
+				p
+					span 
+						a(href='/users/forget', style='padding-right:175px') Forgot password
+					input(type="submit", name="submit", value="login")
+						
+						
+						

@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		title= 'Blog System'
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/') Home
+
+		div(style='float:right')
+			if (username && authenticated)
+				a(href='/users/signout', style='margin:10px;') Sign Out
+				a(href='/users/add_article', style='margin:10px;') Add Article
+				a(href='/users/profile', style='margin:10px;') Profile
+				span #{username}
+			else
+				a(href='/users/signin', style='margin:10px;') Log In
+				a(href='/users/register', style='margin:10px;') Register
+				a(href='/users/forget', style='margin:10px;') Forgot password
+	
+	div(style='padding:50px;')
+		h1= title

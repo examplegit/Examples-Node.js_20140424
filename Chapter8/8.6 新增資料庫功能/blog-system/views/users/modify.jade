@@ -1,0 +1,31 @@
+doctype html
+html
+	head
+		title= Modify
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/') Home
+
+		div(style='float:right')
+			if (username && authenticated)
+				span #{username}
+				a(href='/users/profile', style='margin:10px;') Profile
+				a(href='/users/add_article', style='margin:10px;') Add Article
+				a(href='/users/signout', style='margin:10px;') Sign Out
+			else
+				a(href='/users/signin', style='margin:10px;') Log In
+				a(href='/users/register', style='margin:10px;') Register
+	
+	div(style='padding:50px;')
+		form(name="modify", action="/apis/update/" + messageID, method="post")
+			h1 Modify Article
+			div
+				p
+					span Writer: 
+					label(style='padding-right:50px') #{username}
+				p
+					textarea(cols="50", rows="25", style='resize : none;', name="Content") #{blogs[0].Article)
+				div
+					span(style='padding-right:377px')
+					input(type="submit", name="submit", value="Update")
+
